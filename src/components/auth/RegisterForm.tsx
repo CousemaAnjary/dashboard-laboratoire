@@ -39,7 +39,7 @@ export default function RegisterForm() {
         // Affichage du loader pendant le chargement
         setLoading(true)
         try {
-            const response = await register(data)
+            const response = await register(data)      
         }
         catch (error) {
             console.error("Erreur d'inscription :", error)
