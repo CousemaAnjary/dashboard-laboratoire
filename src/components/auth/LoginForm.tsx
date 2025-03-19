@@ -36,7 +36,7 @@ export default function LoginForm() {
      */
     return (
         <div className="relative w-full max-w-md p-8">
-            <h1 className="mb-2 font-spaceGrotesk text-2xl font-medium ">Se connecter</h1>
+            <h1 className="mb-2  font-spaceGrotesk text-2xl font-medium">Se connecter</h1>
             <p className="mb-4 ">
                 Connectez-vous à votre compte pour accéder à votre espace personnel
             </p>
