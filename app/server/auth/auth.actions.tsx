@@ -30,6 +30,7 @@ export async function register(data: z.infer<typeof RegisterSchema>) {
     }
     catch (error) {
         console.error("Erreur d'inscription :", error)
+        return { success: false, error: "Une erreur inattendue est survenue. Veuillez réessayer plus tard." }
     }
 }
 

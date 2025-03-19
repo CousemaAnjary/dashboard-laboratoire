@@ -40,6 +40,10 @@ export default function RegisterForm() {
         setLoading(true)
         try {
             const response = await register(data)
+            if (!response.success) return console.log(response.error)
+
+            // Rediriger l'utilisateur vers la page de connexion
+            router.push("/login")
         }
         catch (error) {
             console.error("Erreur d'inscription :", error)
