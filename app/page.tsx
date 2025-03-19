@@ -1,5 +1,7 @@
 "use client"
+import { cn } from "@/src/lib/utils"
 import Navbar from "@/src/components/Navbar"
+import { GridPattern } from "@/src/components/magicui/grid-pattern"
 
 
 export default function page() {
@@ -18,7 +20,7 @@ export default function page() {
      */
     return (
         <div className="flex min-h-screen flex-col">
-            {/* <GridPattern width={50} height={50} x={-1} y={-1} strokeDasharray={"4 2"} className={cn("absolute inset-0 [mask-image:radial-gradient(900px_circle_at_center,white,transparent)]")} /> */}
+            <GridPattern width={50} height={50} x={-1} y={-1} strokeDasharray={"4 2"} className={cn("absolute inset-0 [mask-image:radial-gradient(900px_circle_at_center,white,transparent)]")} />
             {/* En-tête */}
             <header>
                 <Navbar />
