@@ -1,4 +1,5 @@
 "use client"
+import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
 import { Input } from "../ui/input"
@@ -33,8 +34,18 @@ export default function RegisterForm() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
-    const handleRegister = async () => {
-        console.log("Register")
+    const handleRegister = async (data: z.infer<typeof RegisterSchema>) => {
+        setLoading(true)
+
+        try {
+            console.log("register")
+
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setLoading(false)
+        }
+
     }
 
     /**
