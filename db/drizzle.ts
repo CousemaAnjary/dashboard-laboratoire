@@ -1,5 +1,6 @@
 // Make sure to install the 'pg' package 
 import { Pool } from 'pg'
+import * as schema from "@/db/schema";
 import { drizzle } from 'drizzle-orm/node-postgres'
 
 const pool = new Pool({
@@ -7,6 +8,6 @@ const pool = new Pool({
     ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false
 })
 
-const db = drizzle(pool)
+const db = drizzle(pool, { schema })
 
 export default db
