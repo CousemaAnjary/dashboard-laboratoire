@@ -60,7 +60,7 @@ export default function RegisterForm() {
                                         <FormItem>
                                             <FormLabel className="font-inter">Nom</FormLabel>
                                             <FormControl>
-                                                <Input {...field} placeholder="ABDILLAH" className="bg-white font-inter shadow-sm dark:bg-zinc-950" />
+                                                <Input {...field} placeholder="ABDILLAH" className="bg-white font-inter  dark:bg-zinc-950" />
                                             </FormControl>
                                             <FormMessage className="font-inter" />
                                         </FormItem>
@@ -75,7 +75,7 @@ export default function RegisterForm() {
                                         <FormItem>
                                             <FormLabel className="font-inter">Prénom</FormLabel>
                                             <FormControl>
-                                                <Input {...field} placeholder="Cousema Anjary" className="bg-white font-inter shadow-sm dark:bg-zinc-950" />
+                                                <Input {...field} placeholder="Cousema Anjary" className="bg-white font-inter  dark:bg-zinc-950" />
                                             </FormControl>
                                             <FormMessage className="font-inter" />
                                         </FormItem>
@@ -92,7 +92,7 @@ export default function RegisterForm() {
                                     <FormItem>
                                         <FormLabel className="font-inter">Adresse email</FormLabel>
                                         <FormControl>
-                                            <Input {...field} placeholder="exemple@gmail.com" className="bg-white font-inter shadow-sm dark:bg-zinc-950" />
+                                            <Input {...field} placeholder="exemple@gmail.com" className="bg-white font-inter  dark:bg-zinc-950" />
                                         </FormControl>
                                         <FormMessage className="font-inter" />
                                     </FormItem>
@@ -109,7 +109,7 @@ export default function RegisterForm() {
                                         <FormItem>
                                             <FormLabel className="font-inter">Mot de passe</FormLabel>
                                             <FormControl>
-                                                <Input {...field} type={showPassword ? "text" : "password"} placeholder="Entrez votre mot de passe" className="bg-white font-inter shadow-sm dark:bg-zinc-950" />
+                                                <Input {...field} type={showPassword ? "text" : "password"} placeholder="Entrez votre mot de passe" className="bg-white font-inter  dark:bg-zinc-950" />
                                             </FormControl>
                                             <FormMessage className="font-inter" />
                                         </FormItem>
@@ -131,7 +131,7 @@ export default function RegisterForm() {
                                     <FormItem>
                                         <FormLabel className="font-inter">Confirmez le mot de passe</FormLabel>
                                         <FormControl>
-                                            <Input {...field} type={showPassword ? "text" : "password"} placeholder="Retapez votre mot de passe" className="bg-white font-inter shadow-sm dark:bg-zinc-950" />
+                                            <Input {...field} type={showPassword ? "text" : "password"} placeholder="Retapez votre mot de passe" className="bg-white font-inter  dark:bg-zinc-950" />
                                         </FormControl>
                                         <FormMessage className="font-inter" />
                                     </FormItem>
