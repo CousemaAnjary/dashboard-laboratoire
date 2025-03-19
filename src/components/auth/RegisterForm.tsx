@@ -19,9 +19,6 @@ export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
-    /**
-     * ! COMPORTEMENT (méthodes, fonctions) de l'application
-     */
     const form = useForm({
         resolver: zodResolver(RegisterSchema),
         defaultValues: {
@@ -32,6 +29,13 @@ export default function RegisterForm() {
             confirmPassword: "",
         }
     })
+
+    /**
+     * ! COMPORTEMENT (méthodes, fonctions) de l'application
+     */
+    const handleRegister = async () => {
+        console.log("Register")
+    }
 
     /**
      * ! AFFICHAGE (render) de l'application
