@@ -3,8 +3,11 @@ import Link from "next/link"
 import { useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
+import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
 import { Eye, EyeOff, Loader } from "lucide-react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { RegisterSchema } from "@/src/lib/schemas/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 
 
@@ -19,7 +22,16 @@ export default function RegisterForm() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
-
+    const form = useForm({
+        resolver: zodResolver(RegisterSchema),
+        defaultValues: {
+            lastname: "",
+            firstname: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+        }
+    })
 
     /**
      * ! AFFICHAGE (render) de l'application
