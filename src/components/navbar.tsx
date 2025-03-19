@@ -29,7 +29,7 @@ export default function navbar() {
                 <ul className='ms-2 flex space-x-1'>
                     <li>
                         <Link href="/">
-                            <Button variant={'ghost'} className='flex items-center font-spaceGrotesk'>
+                            <Button variant={'ghost'} className='flex items-center font-spaceGrotesk font-normal'>
                                 <House className="size-3" />
                                 <span>Accueil</span>
                             </Button>
@@ -38,7 +38,7 @@ export default function navbar() {
                     </li>
                     <li>
                         <Link href="#">
-                            <Button variant={'ghost'} className='flex items-center font-spaceGrotesk'>
+                            <Button variant={'ghost'} className='flex items-center font-spaceGrotesk font-normal'>
                                 <Info className="size-3" />
                                 <span>A propos de moi</span>
                             </Button>
@@ -47,7 +47,7 @@ export default function navbar() {
                     </li>
                     <li>
                         <Link href="#">
-                            <Button variant={'ghost'} className='flex items-center font-spaceGrotesk'>
+                            <Button variant={'ghost'} className='flex items-center font-spaceGrotesk font-normal'>
                                 <Contact className="size-3" />
                                 <span>Contact</span>
                             </Button>

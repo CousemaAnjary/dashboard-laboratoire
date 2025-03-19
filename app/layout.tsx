@@ -1,17 +1,17 @@
 import "./globals.css"
 import type { Metadata } from "next"
-import {Inter, Space_Grotesk } from "next/font/google"
+import { Inter, Space_Grotesk } from "next/font/google"
 import { ThemeProvider } from "@/src/components/theme-provider"
 
 
 const inter = Inter({
   variable: "--font-inter",
-  weight: '400',
+  weight: ['400', '500', '600', '700'],
 })
 
-const space_Grotesk = Space_Grotesk({
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
-  weight: '400',
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-       className={`${inter.variable} ${space_Grotesk.variable} antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
 
       >
         <ThemeProvider
