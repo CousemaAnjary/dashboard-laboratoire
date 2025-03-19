@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { RegisterSchema } from "@/src/lib/schemas/auth"
+import { register } from "@/app/server/auth/auth.actions"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 
 
@@ -35,17 +36,15 @@ export default function RegisterForm() {
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
     const handleRegister = async (data: z.infer<typeof RegisterSchema>) => {
+        // Affichage du loader pendant le chargement
         setLoading(true)
-
         try {
-            console.log("register")
-
-        } catch (error) {
-            console.error(error)
-        } finally {
-            setLoading(false)
+            const response = await register(data)
         }
-
+        catch (error) {
+            console.error("Erreur d'inscription :", error)
+        }
+        finally { setLoading(false) }
     }
 
     /**
