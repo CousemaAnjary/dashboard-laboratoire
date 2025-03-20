@@ -1,7 +1,6 @@
 "use client"
-
 import Link from "next/link"
-import { getMenu } from "@/src/utils/menu"
+import { getMenu } from "@/src/utils/menuConfig"
 import { usePathname } from "next/navigation"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../ui/breadcrumb"
 

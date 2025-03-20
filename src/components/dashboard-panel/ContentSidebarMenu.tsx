@@ -1,11 +1,11 @@
 "use client"
-
 import Link from "next/link"
-import { getMenu } from "@/src/utils/menu"
 import { usePathname } from "next/navigation"
+import { getMenu } from "@/src/utils/menuConfig"
 import { ChevronRight, Ellipsis } from "lucide-react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible"
 import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, useSidebar } from "../ui/sidebar"
+
 
 
 export default function SidebarContentMenu() {
