@@ -1,10 +1,15 @@
-import { SidebarProvider } from "@/src/components/ui/sidebar"
+"use client"
+import Navbar from "@/src/components/dashboard-panel/Navbar"
+import AppSidebar from "@/src/components/dashboard-panel/AppSidebar"
+import { SidebarInset, SidebarProvider } from "@/src/components/ui/sidebar"
+import { useSidebarStore } from "@/src/components/dashboard-panel/hooks/use-sibebar-toggle"
 
-export default function DashboardLayout() {
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     /**
      * ! STATE (état, données) de l'application
      */
-
+    const { open, setOpen, } = useSidebarStore()
 
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
