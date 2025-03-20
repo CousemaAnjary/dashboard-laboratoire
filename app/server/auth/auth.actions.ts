@@ -22,10 +22,10 @@ export async function register(data: z.infer<typeof RegisterSchema>) {
         const existingUser = await db.query.users.findFirst({ where: eq(users.email, email) })
         if (existingUser) return { success: false, error: "Un compte existe déjà avec cette adresse e-mail" }
 
-
         // Créer un nouvel utilisateur
         await auth.api.signUpEmail({ body: { email, password, name: fullName } })
 
+        // Retourner le message de succès
         return { success: true, message: "Inscription réussie. Vérifiez votre email" }
     }
     catch (error) {
@@ -35,7 +35,32 @@ export async function register(data: z.infer<typeof RegisterSchema>) {
 }
 
 // connexion d'un utilisateur
-export async function login(data: z.infer<typeof LoginSchema>) { }
+export async function login(data: z.infer<typeof LoginSchema>) {
+    try {
+        // Validation des données 
+        const validatedData = LoginSchema.safeParse(data)
+        if (!validatedData.success) return { success: false, error: "Données invalides" }
+
+        // Extraire les données validées
+        const { email, password } = validatedData.data
+
+        // Vérifier si l'utilisateur existe dans la base de données
+        const existingUser = await db.query.users.findFirst({ where: eq(users.email, email) })
+        if (existingUser) return { success: false, error: "Aucun compte n'est associé à cette adresse e-mail" }
+
+        // Connexion de l'utilisateur
+        await auth.api.signInEmail({ body: { email, password } })
+
+        // Retourner le message de succès
+        return { success: true, message: "Connexion réussie" }
+
+
+    }
+    catch (error) {
+        console.error("Erreur de connexion :", error)
+        return { success: false, error: "Une erreur inattendue est survenue. Veuillez réessayer plus tard." }
+    }
+}
 
 // Vérifie un utilisateur par email avec OTP
 export async function verifyEmail() { }
