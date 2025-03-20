@@ -45,15 +45,14 @@ export async function login(data: z.infer<typeof LoginSchema>) {
         const { email, password } = validatedData.data
 
         // Vérifier si l'utilisateur existe dans la base de données
-        const existingUser = await db.query.users.findFirst({ where: eq(users.email, email) })
-        if (existingUser) return { success: false, error: "Aucun compte n'est associé à cette adresse e-mail" }
+        const user = await db.query.users.findFirst({ where: eq(users.email, email) })
+        if (!user) return { success: false, error: "Aucun compte n'est associé à cette adresse e-mail" }
 
         // Connexion de l'utilisateur
         await auth.api.signInEmail({ body: { email, password } })
 
         // Retourner le message de succès
         return { success: true, message: "Connexion réussie" }
-
 
     }
     catch (error) {

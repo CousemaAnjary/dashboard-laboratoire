@@ -42,7 +42,7 @@ export default function LoginForm() {
             if (!response.success) return console.log(response.error)
 
             // Rediriger l'utilisateur vers la page de connexion
-            startTransition(() => { router.push("/") })
+            startTransition(() => { router.push("/dashboard") })
         }
         catch (error) {
             console.error("Erreur de connexion :", error)
