@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+import Social from "./Social"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { useForm } from "react-hook-form"
@@ -9,7 +10,6 @@ import { useState, useTransition } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { AtSign, Eye, EyeOff, Loader, LockKeyhole } from "lucide-react"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
-
 
 
 export default function LoginForm() {
@@ -151,7 +151,7 @@ export default function LoginForm() {
                             </div>
                         </div>
 
-                        {/* <Social /> */}
+                        <Social />
                     </div>
                 </form>
             </Form>
