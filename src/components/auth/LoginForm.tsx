@@ -1,4 +1,5 @@
 "use client"
+import { z } from "zod"
 import Link from "next/link"
 import Social from "./Social"
 import { Input } from "../ui/input"
@@ -8,6 +9,7 @@ import { useRouter } from "next/navigation"
 import { LoginSchema } from "@/src/schema/auth"
 import { useState, useTransition } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { login } from "@/app/server/auth/auth.actions"
 import { AtSign, Eye, EyeOff, Loader, LockKeyhole } from "lucide-react"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 
@@ -32,8 +34,20 @@ export default function LoginForm() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
-    const handleLogin = async () => {
-        console.log("Login")
+    const handleLogin = async (data: z.infer<typeof LoginSchema>) => {
+        // Affichage du loader pendant le chargement
+        setLoading(true)
+        try {
+            const response = await login(data)
+            if (!response.success) return console.log(response.error)
+
+            // Rediriger l'utilisateur vers la page de connexion
+            startTransition(() => { router.push("/") })
+        }
+        catch (error) {
+            console.error("Erreur de connexion :", error)
+        }
+        finally { setLoading(false) }
     }
 
     /**
