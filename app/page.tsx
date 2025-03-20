@@ -14,8 +14,8 @@ export default function page() {
    */
   return (
     <>
-      <h1 className="font-">Ma page</h1>
-      <p>Contenu de ma page</p>
+      <h1 className="font-inter">Ma page</h1>
+      <p className="font-spaceGrotesk">Contenu de ma page</p>
     </>
   )
 }
