@@ -1,22 +1,23 @@
-import { create } from "zustand"
-import { persist, createJSONStorage } from "zustand/middleware"
+"use client";
+import { useState, useEffect } from "react";
 
-interface SidebarState {
-    open?: boolean // `undefined` au début pour attendre `localStorage`
-    toggleSidebar: () => void;
-    setOpen: (value: boolean) => void;
-}
+const SIDEBAR_STATE_KEY = "sidebarState";
 
-export const useSidebarStore = create<SidebarState>()(
-    persist(
-        (set) => ({
-            open: undefined, //  Laisse Zustand attendre `localStorage`
-            toggleSidebar: () => set((state) => ({ open: !state.open })),
-            setOpen: (value) => set({ open: value }),
-        }),
-        {
-            name: "sidebar-storage",
-            storage: createJSONStorage(() => localStorage), //  Assure une gestion propre avec Zustand
+export default function useSidebarToggle() {
+    const [open, setOpen] = useState<boolean | null>(null);
+
+    // Charger l'état depuis sessionStorage au premier rendu
+    useEffect(() => {
+        const savedState = sessionStorage.getItem(SIDEBAR_STATE_KEY);
+        setOpen(savedState ? JSON.parse(savedState) : true);
+    }, []);
+
+    // Sauvegarder l'état à chaque changement
+    useEffect(() => {
+        if (open !== null) {
+            sessionStorage.setItem(SIDEBAR_STATE_KEY, JSON.stringify(open));
         }
-    )
-);
+    }, [open]);
+
+    return { open: open ?? true, setOpen };
+}
