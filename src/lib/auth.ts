@@ -11,4 +11,8 @@ export const auth = betterAuth({
         },
         usePlural: true
     }),
+
+    emailAndPassword: {
+        enabled: true,
+    }
 })
