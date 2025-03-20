@@ -14,7 +14,7 @@ export default function page() {
    */
   return (
     <>
-      <h1 className="w-2 h-2">Ma page</h1>
+      <h1 className="font-">Ma page</h1>
       <p>Contenu de ma page</p>
     </>
   )
