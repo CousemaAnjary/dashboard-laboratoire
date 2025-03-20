@@ -69,7 +69,7 @@ export default function LoginForm() {
                                                 </div>
                                             </div>
                                         </FormControl>
-                                        <FormMessage className="font-spaceGrotesk" />
+                                        <FormMessage className="font-inter" />
                                     </FormItem>
                                 )}
                             />
@@ -98,7 +98,7 @@ export default function LoginForm() {
                                                     </div>
                                                 </div>
                                             </FormControl>
-                                            <FormMessage className="font-spaceGrotesk" />
+                                            <FormMessage className="font-inter" />
                                         </FormItem>
                                     )}
                                 />
