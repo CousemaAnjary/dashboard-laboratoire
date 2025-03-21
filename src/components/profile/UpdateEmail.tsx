@@ -47,7 +47,7 @@ export default function UpdateEmail() {
                                         name="newEmail"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="font-inter">Nouvelle adresse e-mail</FormLabel>
+                                                <FormLabel className="text-sm font-medium font-inter">Nouvelle adresse e-mail</FormLabel>
                                                 <FormControl>
                                                     <Input
                                                         type="email"
@@ -67,13 +67,13 @@ export default function UpdateEmail() {
                                         name="confirmPassword"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="font-inter">Confirmer le mot de passe</FormLabel>
+                                                <FormLabel className="text-sm font-medium font-inter">Confirmer le mot de passe</FormLabel>
                                                 <FormControl>
                                                     <Input
                                                         type="password"
-                                                        placeholder="Votre mot de passe"
+                                                        placeholder="**************"
                                                         {...field}
-                                                        className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
+                                                        className="bg-gray-50  focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
                                                     />
                                                 </FormControl>
                                                 <FormMessage className="font-inter" />
@@ -85,7 +85,7 @@ export default function UpdateEmail() {
 
                             <div className="flex items-center gap-2">
                                 <Button type="submit" size="sm" className="bg-blue-900 hover:bg-blue-950 rounded-sm font-inter shadow-sm">
-                                    Mettre à jour
+                                    Mettre à jour l'e-mail
                                 </Button>
                                 <Button
                                     type="button"
