@@ -14,7 +14,7 @@ export default function ProfileDetails() {
      * ! STATE (état, données) de l'application
      */
     const { data: session } = authClient.useSession()
-    
+
 
     const form = useForm<z.infer<typeof updateUserSchema>>({
         resolver: zodResolver(updateUserSchema),
@@ -53,10 +53,10 @@ export default function ProfileDetails() {
                                             <FormItem>
                                                 <FormLabel className="text-sm font-medium font-inter">Nom complet</FormLabel>
                                                 <FormControl>
-                                                    <Input 
+                                                    <Input
                                                         {...field}
                                                         type="text"
-                                                        placeholder={session?.user?.name }
+                                                        placeholder={session?.user?.name}
                                                         className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
                                                     />
                                                 </FormControl>
