@@ -113,7 +113,6 @@ export default function ProfileDetails() {
                                 <Button size={"sm"} className="rounded-sm bg-blue-900 text-sm hover:bg-blue-950 font-spaceGrotesk">
                                     Enregistrer les modifications
                                 </Button>
-
                             </div>
                         </form>
                     </Form>
