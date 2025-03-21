@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { updateUserSchema } from "@/src/schema/profile"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
+import { Button } from "../ui/button"
 
 
 export default function ProfileDetails() {
@@ -79,7 +80,7 @@ export default function ProfileDetails() {
                                         />
                                     </div>
                                 </div>
-                                <div className="grid gap-2">
+                                <div className="grid gap-2 ">
                                     <FormField
                                         control={form.control}
                                         name="image"
@@ -99,6 +100,20 @@ export default function ProfileDetails() {
                                         )}
                                     />
                                 </div>
+                            </div>
+                            <div className="flex items-center mt-6 gap-2 justify-end">
+                                <Button
+                                    type="reset"
+                                    size={"sm"}
+                                    variant="secondary"
+                                    className="rounded-sm font-inter shadow"
+                                >
+                                    Effacer
+                                </Button>
+                                <Button size={"sm"} className="rounded-sm bg-blue-900 text-sm hover:bg-blue-950 font-spaceGrotesk">
+                                    Enregistrer les modifications
+                                </Button>
+
                             </div>
                         </form>
                     </Form>
