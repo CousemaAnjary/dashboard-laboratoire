@@ -1,12 +1,12 @@
 "use client"
+import { z } from "zod"
 import { useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
-import { updatePasswordSchema } from "@/src/schema/profile"
-import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { updatePasswordSchema } from "@/src/schema/profile"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 
 
 export default function UpdatePassword() {
@@ -54,7 +54,7 @@ export default function UpdatePassword() {
                                                 <FormControl>
                                                     <Input
                                                         type="password"
-                                                       placeholder="**************"
+                                                        placeholder="**************"
                                                         {...field}
                                                         className="bg-gray-50 focus:bg-white focus:outline-none border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
                                                     />
