@@ -51,7 +51,7 @@ export default function EmailVerified() {
             if (!response.success) return console.log(response.error)
 
             // Rediriger l'utilisateur vers la page de connexion
-            router.push("/dashboard")
+            router.push("/profile")
         }
         catch (error) {
             console.error("Erreur de vérification du code OTP :", error)

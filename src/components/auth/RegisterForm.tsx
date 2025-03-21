@@ -65,7 +65,6 @@ export default function RegisterForm() {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleRegister)}>
                     <div className="grid gap-4">
-
                         <div className="grid grid-cols-2 gap-2">
                             <div className="grid gap-2">
                                 <FormField

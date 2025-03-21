@@ -14,7 +14,7 @@ export default function UpdateEmail() {
      * ! STATE (état, données) de l'application
      */
     const [isEditing, setIsEditing] = useState(false);
-    const [email, setEmail] = useState("support@keenthemes.com");
+    const [email, setEmail] = useState("support@keenthemes.com")
 
     const form = useForm<z.infer<typeof updateEmailSchema>>({
         resolver: zodResolver(updateEmailSchema),
@@ -22,7 +22,7 @@ export default function UpdateEmail() {
             newEmail: "",
             confirmPassword: "",
         },
-    });
+    })
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */

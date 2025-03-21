@@ -31,7 +31,7 @@ export async function middleware(request: NextRequest) {
 
     // 🔹 Redirection si l'utilisateur **est connecté** et tente d'accéder à une **page publique** et **page restreinte**
     if ((isPublicRoute || isRestrictedRoute) && sessionCookie) {
-        return NextResponse.redirect(new URL("/dashboard", request.url))
+        return NextResponse.redirect(new URL("/profile", request.url))
     }
 
     // 🔹 Vérification des accès aux pages sensibles (email verification & reset password)
