@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { authClient } from "@/src/lib/auth-client"
 import profileCover from "@/public/images/profile-cover-2.jpg"
-import { Tabs, TabsList, TabsTrigger } from "@/src/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs"
 
 
 
@@ -85,13 +85,19 @@ export default function Profile() {
                 </div>
             </div>
 
-            <Tabs defaultValue="account" className=" mt-6 items-start  rounded-lg bg-gray-100 p-1 py-1.5">
+            <Tabs defaultValue="account" className=" mt-6 rounded-lg bg-gray-100 p-1 py-1.5">
                 <TabsList className=" space-x-4">
                     <TabsTrigger className="p-2 font-inter rounded-sm" value="account">Vue générale</TabsTrigger>
                     <TabsTrigger className="p-2 font-inter rounded-sm" value="Settings">Paramètres</TabsTrigger>
                     <TabsTrigger className="p-2 font-inter rounded-sm" value="Security">Sécurité</TabsTrigger>
-                    <TabsTrigger className="p-2 font-inter rounded-sm" value="Activity">Désactiver le compte</TabsTrigger>
+                    <TabsTrigger className="p-2 font-inter rounded-sm" value="delete">Supprimer le compte</TabsTrigger>
                 </TabsList>
+                <TabsContent value="account">
+                    <div>
+                        <h1>Vue générale</h1>
+                        <p>Informations générales</p>
+                    </div>
+                </TabsContent>
             </Tabs>
         </>
     )
