@@ -23,7 +23,7 @@ export default function ProfileDetails() {
     const form = useForm<z.infer<typeof updateUserSchema>>({
         resolver: zodResolver(updateUserSchema),
         defaultValues: {
-            name: session?.user?.name,
+            name: "",
             image: undefined
         },
     })
@@ -31,14 +31,7 @@ export default function ProfileDetails() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
-    useEffect(() => {
-        if (session?.user?.name) {
-            form.reset({
-                name: session.user.name,
-                image: undefined
-            })
-        }
-    }, [session?.user?.name])
+
 
     const handleUpdateUser = async (data: z.infer<typeof updateUserSchema>) => {
         // Affichage du loader pendant le chargement
@@ -83,7 +76,7 @@ export default function ProfileDetails() {
                                                     <Input
                                                         {...field}
                                                         type="text"
-                                                        placeholder="Nom complet"
+                                                        placeholder={session?.user?.name}
                                                         className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
                                                     />
                                                 </FormControl>

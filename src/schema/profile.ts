@@ -18,11 +18,7 @@ export const updatePasswordSchema = z.object({
 
 
 export const updateUserSchema = z.object({
-    name: z
-        .string()
-        .min(2, "Le nom doit contenir au moins 2 caractères")
-        .optional() // ✅ rendu optionnel
-        .or(z.literal("")),
+    name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
     image: z
         // Vérifie que l’entrée est bien un fichier (File).
         .custom<File>((value) => value instanceof File, {
