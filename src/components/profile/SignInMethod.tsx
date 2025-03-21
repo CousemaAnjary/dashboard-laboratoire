@@ -1,12 +1,30 @@
-"use client";
+"use client"
+import { z } from "zod"
 import { useState } from "react"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { Button } from "../ui/button"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { updateEmailSchema } from "@/src/schema/profile"
+import { Input } from "../ui/input"
+
 
 export default function SignInMethod() {
-    const [email, setEmail] = useState("support@keenthemes.com");
+    const [email, setEmail] = useState("support@keenthemes.com")
+
     const [isEditing, setIsEditing] = useState(false);
     const [newEmail, setNewEmail] = useState(email);
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("")
+
+    const form = useForm<z.infer<typeof updateEmailSchema>>({
+        resolver: zodResolver(updateEmailSchema),
+        defaultValues: {
+            newEmail: email,
+            confirmPassword: "",
+        },
+    })
+
+
     const [isEditingPassword, setIsEditingPassword] = useState(false);
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -37,46 +55,73 @@ export default function SignInMethod() {
             {/* 📧 Modification d'email */}
             <div className="mt-4 border-b pb-4">
                 {isEditing ? (
-                    <>
-                        <label className="block text-sm font-medium text-gray-600">Nouvelle adresse e-mail</label>
-                        <input
-                            type="email"
-                            value={newEmail}
-                            onChange={(e) => setNewEmail(e.target.value)}
-                            className="mt-1 w-full rounded-md border bg-gray-100 px-3 py-2 text-gray-800 focus:border-blue-500 focus:bg-white focus:outline-none"
-                        />
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(handleUpdateEmail)}>
+                            <div className="grid gap-4">
+                                <div className="grid grid-cols-2 gap-6">
+                                    <div className="grid gap-2">
+                                        <FormField
+                                            control={form.control}
+                                            name="newEmail"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel className="font-inter">Nouvelle adresse e-mail</FormLabel>
+                                                    <FormControl>
+                                                        <Input type="email" placeholder={field.value} onChange={field.onChange} className="bg-white font-inter  dark:bg-zinc-950" />
+                                                    </FormControl>
+                                                    <FormMessage className="font-inter" />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <FormField
+                                            control={form.control}
+                                            name="confirmPassword"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel className="font-inter">Confirmer le mot de passe</FormLabel>
+                                                    <FormControl>
+                                                        <Input {...field} placeholder="Entrez votre mot de passe" className="bg-white font-inter  dark:bg-zinc-950" />
+                                                    </FormControl>
+                                                    <FormMessage className="font-inter" />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </div>
+                                </div>
 
-                        <label className="mt-3 block text-sm font-medium text-gray-600">Confirmer le mot de passe</label>
-                        <input
-                            type="password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            className="mt-1 w-full rounded-md border bg-gray-100 px-3 py-2 text-gray-800 focus:border-blue-500 focus:bg-white focus:outline-none"
-                        />
+                                <div className="flex items-center gap-2">
+                                    <Button
+                                        size={"sm"}
+                                        className="bg-blue-900 hover:bg-blue-950 rounded-sm font-inter shadow-sm "
+                                    >
+                                        Modifier l'email
+                                    </Button>
+                                    <Button
+                                        onClick={() => setIsEditing(false)}
+                                        size={"sm"}
+                                        variant={"ghost"}
+                                        className="rounded-sm font-inter shadow"
+                                    >
+                                        Annuler
+                                    </Button>
+                                </div>
+                            </div>
+                        </form>
+                    </Form>
 
-                        <div className="mt-4 flex items-center gap-2">
-                            <button
-                                onClick={handleUpdateEmail}
-                                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
-                            >
-                                Mettre à jour l'email
-                            </button>
-                            <button
-                                onClick={() => setIsEditing(false)}
-                                className="rounded-md px-4 py-2 text-sm text-gray-600 hover:underline"
-                            >
-                                Annuler
-                            </button>
-                        </div>
-                    </>
+
                 ) : (
                     <>
-                        <p className="text-sm font-medium  font-inter">Adresse e-mail</p>
+                        <p className="text-sm font-medium font-inter">Adresse e-mail</p>
                         <div className="flex items-center justify-between">
                             <span className="text-sm text-muted-foreground font-spaceGrotesk font-medium">{email}</span>
                             <Button
                                 onClick={() => setIsEditing(true)}
-                                className="rounded-md bg-gray-100 px-3 py-1 text-sm text-gray-600 hover:bg-gray-200"
+                                size={"sm"}
+                                variant={"outline"}
+                                className="rounded-sm font-inter shadow-sm "
                             >
                                 Modifier l'email
                             </Button>
@@ -134,15 +179,17 @@ export default function SignInMethod() {
                     </>
                 ) : (
                     <>
-                        <p className="text-sm font-medium text-gray-600">Mot de passe</p>
+                        <p className="text-sm font-medium font-inter">Mot de passe</p>
                         <div className="mt-1 flex items-center justify-between">
-                            <span className="text-sm text-gray-800">**********</span>
-                            <button
-                                onClick={() => setIsEditingPassword(true)}
-                                className="rounded-md bg-gray-100 px-3 py-1 text-sm text-gray-600 hover:bg-gray-200"
+                            <span className="text-sm text-muted-foreground font-inter">**************</span>
+                            <Button
+                                onClick={() => setIsEditing(true)}
+                                size={"sm"}
+                                variant={"outline"}
+                                className="rounded-sm font-spaceGrotesk shadow-sm "
                             >
                                 Réinitialiser le mot de passe
-                            </button>
+                            </Button>
                         </div>
                     </>
                 )}
