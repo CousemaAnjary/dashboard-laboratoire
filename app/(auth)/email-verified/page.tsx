@@ -1,16 +1,15 @@
 "use client"
 import { z } from "zod"
 import { Loader } from "lucide-react"
-import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/src/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { VerifyEmailSchema } from "@/src/schema/auth"
 import { resendOtp, verifyEmail } from "@/app/server/auth/auth.actions"
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/src/components/ui/input-otp"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/src/components/ui/form"
-
 
 const OTP_EXPIRATION_TIME = 600
 const RESEND_COOLDOWN_TIME = 30
