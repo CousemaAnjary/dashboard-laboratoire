@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/src/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { VerifyEmailSchema } from "@/src/schema/auth"
-import { verifyEmail } from "@/app/server/auth/auth.actions"
+import { resendOtp, verifyEmail } from "@/app/server/auth/auth.actions"
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/src/components/ui/input-otp"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/src/components/ui/form"
 
@@ -73,7 +73,16 @@ export default function EmailVerified() {
     }
 
     const handleResendOtp = async () => {
-        console.log("Renvoyer le code")
+        try {
+            const response = await resendOtp()
+            if (!response.success) return console.log(response.error)
+
+            // Mettre en place le cooldown
+            setResendCooldown(RESEND_COOLDOWN_TIME)
+        }
+        catch (error) {
+            console.error("Erreur lors du renvoi du code OTP :", error)
+        }
     }
 
     const minutes = Math.floor(otpExpiration / 60)
