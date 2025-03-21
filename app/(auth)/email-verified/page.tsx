@@ -10,9 +10,8 @@ import { VerifyEmailSchema } from "@/src/schema/auth"
 import { resendOtp, verifyEmail } from "@/app/server/auth/auth.actions"
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/src/components/ui/input-otp"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/src/components/ui/form"
-import { useOtpStore } from "@/src/store/useOtpStore"
 
-
+const RESEND_COOLDOWN_TIME = 30
 
 export default function EmailVerified() {
     /**
@@ -20,7 +19,7 @@ export default function EmailVerified() {
      */
     const router = useRouter()
     const [loading, setLoading] = useState(false)
-    const { otpRemaining, cooldownRemaining, startOtpTimer, startCooldown, hydrateFromSession } = useOtpStore()
+    const [resendCooldown, setResendCooldown] = useState(0)
 
 
     const form = useForm<z.infer<typeof VerifyEmailSchema>>({
@@ -33,9 +32,16 @@ export default function EmailVerified() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
+    // ⏳ Timer pour le cooldown du renvoi
     useEffect(() => {
-        hydrateFromSession()
-    }, [])
+        if (resendCooldown === 0) return;
+        const interval = setInterval(() => {
+            setResendCooldown((prev) => (prev > 0 ? prev - 1 : 0));
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [resendCooldown]);
+
 
     const handleVerifyOtp = async (data: z.infer<typeof VerifyEmailSchema>) => {
         // Affichage du loader pendant le chargement
@@ -58,16 +64,14 @@ export default function EmailVerified() {
             const response = await resendOtp()
             if (!response.success) return console.log(response.error)
 
-            startOtpTimer()
-            startCooldown()
+            setResendCooldown(RESEND_COOLDOWN_TIME)
+
         }
         catch (error) {
             console.error("Erreur lors du renvoi du code OTP :", error)
         }
     }
 
-    const minutes = Math.floor(otpRemaining / 60)
-    const seconds = otpRemaining % 60
 
 
     /**
@@ -105,7 +109,7 @@ export default function EmailVerified() {
                                         </InputOTP>
                                     </FormControl>
                                     <FormDescription>
-                                        Votre code de vérification à 6 chiffres <span> expirera dans {minutes} min {seconds} sec</span>
+                                        Votre code de vérification à 6 chiffres  expirera dans 10 minutes.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
@@ -132,10 +136,10 @@ export default function EmailVerified() {
                             type="button"
                             className="font-spaceGrotesk text-blue-600 hover:underline"
                             onClick={handleResendOtp}
-                            disabled={cooldownRemaining > 0}
+                            disabled={resendCooldown > 0}
                         >
-                            {cooldownRemaining > 0
-                                ? `Réessayer dans ${cooldownRemaining}s`
+                            {resendCooldown > 0
+                                ? `Réessayer dans ${resendCooldown}s`
                                 : "Renvoyer le code"}
                         </button>
                     </p>
