@@ -21,13 +21,13 @@ export default function Profile() {
      */
     return (
         <>
-            <div className="mb-8 flex w-full items-center justify-between rounded-md bg-white p-4 shadow-sm">
+            <div className="mb-8 flex w-full items-center justify-between rounded-md bg-white p-4 ">
                 <h1 className="font-spaceGrotesk font-medium text-gray-800">Mes informations personnelles</h1>
             </div>
 
             <div className="mx-auto rounded-lg bg-white shadow-sm">
                 {/* 🎨 Couverture */}
-                <div className="relative h-52 w-full">
+                <div className="relative h-64 w-full">
                     <Image
                         src={profileCover} // Remplace avec ton image
                         alt="Cover"
@@ -38,26 +38,24 @@ export default function Profile() {
                 </div>
 
                 {/* 🏅 Profil */}
-                <div className="relative -mt-12 flex flex-col items-start px-6 pb-6">
+                <div className="relative -mt-20 flex flex-col items-start px-6 pb-6">
                     <div className="relative">
                         {/* ✅ Affichage de l'image dynamique avec fallback */}
-                        <Avatar className="h-28 w-28 border-4 border-white shadow-md">
+                        <Avatar className="h-36 w-36 rounded-xl border-4 border-white">
                             <AvatarImage
                                 src={session?.user?.image || "/images/default-avatar.png"} // ✅ Fallback image
-                                alt={session?.user?.name || "Utilisateur"}
+                                alt="@shadcn"
                             />
-                            <AvatarFallback>
-                                {session?.user?.name?.charAt(0).toUpperCase()}
-                            </AvatarFallback>
+                            <AvatarFallback className="rounded-xl">JD</AvatarFallback>
                         </Avatar>
                     </div>
 
                     {/* 📌 Informations */}
-                    <h2 className="mt-2 text-xl font-bold text-gray-800 flex items-center">
+                    <h2 className="mt-2 font-inter font-semibold text-gray-800">
                         {session?.user?.name}
                     </h2>
-                    <p className="text-sm text-gray-600 text-center max-w-sm">
-                        Design is like a fart. If you have to force it, it’s probably shit.
+                    <p className="text-sm font-spaceGrotesk text-gray-600 text-center text-muted-foreground">
+                        Explorateur curieux, toujours en quête de nouvelles expériences
                     </p>
 
                     {/* 🔹 Métadonnées */}
