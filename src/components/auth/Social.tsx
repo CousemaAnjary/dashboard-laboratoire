@@ -26,7 +26,7 @@ export default function Social() {
         try {
             await authClient.signIn.social({
                 provider,
-                callbackURL: "/dashboard",
+                callbackURL: "/profile",
             })
 
         } catch (error) {

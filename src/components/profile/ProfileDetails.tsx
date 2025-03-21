@@ -8,8 +8,8 @@ import { useForm } from "react-hook-form"
 import { authClient } from "@/src/lib/auth-client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { updateUserSchema } from "@/src/schema/profile"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { updateUser } from "@/app/server/profile/profile.actions"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 
 
 export default function ProfileDetails() {
@@ -48,7 +48,7 @@ export default function ProfileDetails() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <div className="bg-white mt-6 shadow-sm  rounded-md" >
+        <div className="bg-white mt-6 shadow-sm  rounded-md">
             <div className="p-4 border-b">
                 <h2 className="font-spaceGrotesk font-semibold text-gray-800">Détails du profil</h2>
             </div>
