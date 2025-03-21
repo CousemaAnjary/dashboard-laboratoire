@@ -100,6 +100,25 @@ export async function verifyEmail(data: z.infer<typeof VerifyEmailSchema>) {
         console.error("Erreur de vérification du code OTP :", error)
         return { success: false, error: "Une erreur inattendue est survenue. Veuillez réessayer plus tard." }
     }
+}
 
+export async function resendOtp() {
+    try {
+        // Récupérer l'email stocké temporairement
+        const cookieStore = await cookies()
+        const email = cookieStore.get("emailToVerify")?.value
+        if (!email) return { success: false, error: "Email non trouvé" }
 
+        // Renvoyer l'OTP
+        setTimeout(async () => {
+            await auth.api.sendVerificationOTP({ body: { email, type: "email-verification" } })
+        }, 0)
+
+        // Retourner le message de succès
+        return { success: true, message: "Code renvoyé avec succès" }
+    }
+    catch (error) {
+        console.error("Erreur lors du renvoi du code OTP :", error)
+        return { success: false, error: "Une erreur inattendue est survenue. Veuillez réessayer plus tard." }
+    }
 }
