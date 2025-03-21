@@ -1,6 +1,7 @@
 "use client"
 import { Button } from "../ui/button"
 import UpdateEmail from "./UpdateEmail"
+import { FcLock } from "react-icons/fc"
 import UpdatePassword from "./UpdatePassword"
 
 
@@ -30,7 +31,7 @@ export default function SignInMethod() {
                 {/* 🔐 Sécurité : 2FA */}
                 <div className="mt-2 flex justify-between items-center gap-3 rounded-md  border-blue-300 border-dotted border bg-blue-50 p-4">
                     <div className="flex items-start gap-2">
-                        <span className="text-blue-500 text-2xl">🔒</span>
+                        <span className="text-blue-500 text-3xl">🔒</span>
                         <div>
                             <h3 className="font-inter font-semibold text-gray-800">Sécurisez votre compte</h3>
                             <p className="text-xs text-muted-foreground font-spaceGrotesk">
