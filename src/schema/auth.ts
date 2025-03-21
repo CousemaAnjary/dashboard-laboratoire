@@ -37,3 +37,15 @@ export const RegisterSchema = z.object({
 export const VerifyEmailSchema = z.object({
     pin: z.string().min(6, "Le code de vérification doit contenir au moins 6 caractères"),
 })
+
+export const ForgotPasswordSchema = z.object({
+    email: z.string().email("L'adresse email est invalide"),
+})
+
+export const ResetPasswordSchema = z.object({
+    newPassword: z.string().min(6, "Le mot de passe doit contenir au moins 6 caractères"),
+    confirmNewPassword: z.string()
+}).refine(data => data.newPassword === data.confirmNewPassword, {
+    message: "Les mots de passe ne correspondent pas",
+    path: ["confirmPassword"]
+})
