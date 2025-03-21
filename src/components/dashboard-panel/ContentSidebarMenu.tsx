@@ -39,7 +39,7 @@ export default function SidebarContentMenu() {
                                                 <SidebarMenuButton asChild variant={menu.active ? "outline" : "default"} tooltip={menu.label}>
                                                     <span className="flex items-center gap-2">
                                                         {menu.icon && <menu.icon className="text-black" />}
-                                                        <span className="font-inter">{menu.label}</span>
+                                                        <span className="font-inter font-medium">{menu.label}</span>
                                                     </span>
                                                 </SidebarMenuButton>
 

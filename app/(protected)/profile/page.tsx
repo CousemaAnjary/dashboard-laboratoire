@@ -2,14 +2,18 @@
 import Image from "next/image"
 import { authClient } from "@/src/lib/auth-client"
 import profileCover from "@/public/images/profile-cover-2.jpg"
-import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar"
+import { Tabs, TabsList, TabsTrigger } from "@/src/components/ui/tabs"
+
 
 
 export default function Profile() {
     /**
      * ! STATE (état, données) de l'application
      */
+
     const { data: session } = authClient.useSession()
+
+
 
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
@@ -25,9 +29,9 @@ export default function Profile() {
                 <h1 className="font-spaceGrotesk font-medium text-gray-800">Mes informations personnelles</h1>
             </div>
 
-            <div className="mx-auto rounded-lg bg-white shadow-sm">
+            <div className="mx-auto overflow-hidden rounded-md bg-white shadow-sm">
                 {/* 🎨 Couverture */}
-                <div className="relative h-64 w-full">
+                <div className="relative h-72 w-full">
                     <Image
                         src={profileCover} // Remplace avec ton image
                         alt="Cover"
@@ -41,13 +45,19 @@ export default function Profile() {
                 <div className="relative -mt-20 flex flex-col items-start px-6 pb-6">
                     <div className="relative">
                         {/* ✅ Affichage de l'image dynamique avec fallback */}
-                        <Avatar className="h-36 w-36 rounded-xl border-4 border-white">
-                            <AvatarImage
-                                src={session?.user?.image || "/images/default-avatar.png"} // ✅ Fallback image
-                                alt="@shadcn"
-                            />
-                            <AvatarFallback className="rounded-xl">JD</AvatarFallback>
-                        </Avatar>
+                        <div className="h-36 w-36 overflow-hidden rounded-xl border-4 border-white ">
+                            {session?.user?.image ? (
+                                <Image
+                                    src={session.user.image}
+                                    alt="Profile picture"
+                                    width={144}
+                                    height={144}
+                                    className="h-full w-full object-cover"
+                                />
+                            ) : (
+                                <div className="flex h-full w-full items-center justify-center bg-slate-50 text-3xl font-semibold text-gray-700"> CN</div>
+                            )}
+                        </div>
                     </div>
 
                     {/* 📌 Informations */}
@@ -74,6 +84,15 @@ export default function Profile() {
                     </div> */}
                 </div>
             </div>
+
+            <Tabs defaultValue="account" className=" mt-6 items-start  rounded-lg bg-gray-100 p-1 py-1.5">
+                <TabsList className=" space-x-4">
+                    <TabsTrigger className="p-2 font-inter rounded-sm" value="account">Vue générale</TabsTrigger>
+                    <TabsTrigger className="p-2 font-inter rounded-sm" value="Settings">Paramètres</TabsTrigger>
+                    <TabsTrigger className="p-2 font-inter rounded-sm" value="Security">Sécurité</TabsTrigger>
+                    <TabsTrigger className="p-2 font-inter rounded-sm" value="Activity">Désactiver le compte</TabsTrigger>
+                </TabsList>
+            </Tabs>
         </>
     )
 }
