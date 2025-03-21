@@ -98,7 +98,7 @@ export default function Profile() {
                         <p>Informations générales</p>
                     </div>
                 </TabsContent>
-                <TabsContent value="Settings" className="bg-white mt-4 shadow-sm p-3 px-6 rounded-md">
+                <TabsContent value="Settings" className="bg-white mt-4 shadow-sm  rounded-md">
                     <SignInMethod />
                 </TabsContent>
             </Tabs>
