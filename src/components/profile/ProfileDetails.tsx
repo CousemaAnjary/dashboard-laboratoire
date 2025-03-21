@@ -3,6 +3,7 @@ import { z } from "zod"
 import { useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
+import { Loader } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { authClient } from "@/src/lib/auth-client"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -14,6 +15,7 @@ export default function ProfileDetails() {
     /**
      * ! STATE (état, données) de l'application
      */
+    const [loading, setLoading] = useState(false)
     const { data: session } = authClient.useSession()
 
 
@@ -28,8 +30,8 @@ export default function ProfileDetails() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
-    const handleUpdateUser = (data: any) => {
-        console.log("Données utilisateur mises à jour :", data)
+    const handleUpdateUser = (data: z.infer<typeof updateUserSchema>) => {
+
     }
 
     /**
@@ -98,7 +100,15 @@ export default function ProfileDetails() {
                                     Effacer
                                 </Button>
                                 <Button size={"sm"} className="rounded-sm bg-blue-900 text-sm hover:bg-blue-950 font-spaceGrotesk">
-                                    Enregistrer les modifications
+                                    {loading ? (
+                                        <>
+                                            <Loader className="mr-2 size-4 animate-spin" />
+                                            Veuillez patienter
+                                        </>
+                                    ) : (
+                                        "Enregistrer les modifications"
+                                    )}
+
                                 </Button>
                             </div>
                         </form>
