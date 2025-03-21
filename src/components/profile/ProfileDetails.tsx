@@ -23,7 +23,7 @@ export default function ProfileDetails() {
     const form = useForm<z.infer<typeof updateUserSchema>>({
         resolver: zodResolver(updateUserSchema),
         defaultValues: {
-            name: "",
+            name: session?.user?.name,
             image: undefined
         },
     })
@@ -74,7 +74,7 @@ export default function ProfileDetails() {
                                                     <Input
                                                         {...field}
                                                         type="text"
-                                                        placeholder={session?.user?.name}
+                                                        placeholder="Nom complet"
                                                         className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
                                                     />
                                                 </FormControl>
