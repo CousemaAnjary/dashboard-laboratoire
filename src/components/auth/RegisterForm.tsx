@@ -43,7 +43,7 @@ export default function RegisterForm() {
             if (!response.success) return console.log(response.error)
 
             // Rediriger l'utilisateur vers la page de connexion
-            router.push("/login")
+            router.replace("/email-verified")
         }
         catch (error) {
             console.error("Erreur d'inscription :", error)
