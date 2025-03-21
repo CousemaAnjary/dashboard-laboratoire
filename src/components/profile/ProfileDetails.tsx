@@ -1,9 +1,11 @@
-import { useForm } from "react-hook-form";
+"use client"
+import { z } from "zod"
+import { Input } from "../ui/input"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { updateUserSchema } from "@/src/schema/profile"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
-import { z } from "zod";
-import { updateUserSchema } from "@/src/schema/profile";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "../ui/input";
+
 
 export default function ProfileDetails() {
     /**
@@ -39,16 +41,19 @@ export default function ProfileDetails() {
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(handleUpdateUser)}>
                             <div className="grid gap-4">
-                                <div className="grid grid-cols-2 gap-2">
+                                <div className="grid grid-cols-2 gap-6">
                                     <div className="grid gap-2">
                                         <FormField
                                             control={form.control}
                                             name="lastname"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel className="font-inter">Nom</FormLabel>
+                                                    <FormLabel className="text-sm font-medium font-inter">Nom</FormLabel>
                                                     <FormControl>
-                                                        <Input {...field} placeholder="ABDILLAH" className="bg-white font-inter  dark:bg-zinc-950" />
+                                                        <Input {...field}
+                                                            placeholder="ABDILLAH"
+                                                            className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
+                                                        />
                                                     </FormControl>
                                                     <FormMessage className="font-inter" />
                                                 </FormItem>
@@ -61,9 +66,12 @@ export default function ProfileDetails() {
                                             name="firstname"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel className="font-inter">Prénom</FormLabel>
+                                                    <FormLabel className="text-sm font-medium font-inter">Prénom</FormLabel>
                                                     <FormControl>
-                                                        <Input {...field} placeholder="Cousema Anjary" className="bg-white font-inter  dark:bg-zinc-950" />
+                                                        <Input {...field}
+                                                            placeholder="Cousema Anjary"
+                                                            className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
+                                                        />
                                                     </FormControl>
                                                     <FormMessage className="font-inter" />
                                                 </FormItem>
@@ -77,12 +85,12 @@ export default function ProfileDetails() {
                                         name="image"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="font-inter">Image (optional)</FormLabel>
+                                                <FormLabel className="text-sm font-medium font-inter">Image (optional)</FormLabel>
                                                 <FormControl>
                                                     <Input
                                                         type="file"
                                                         accept="image/*"
-                                                        className="shadow-sm bg-white font-inter text-xs"
+                                                        className="bg-gray-50  focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
                                                         onChange={(e) => { field.onChange(e.target.files ? e.target.files[0] : null) }}
                                                     />
                                                 </FormControl>
