@@ -91,8 +91,6 @@ export async function verifyEmail(data: z.infer<typeof VerifyEmailSchema>) {
 
         // Supprimer les données stockées après validation
         cookieStore.delete("emailToVerify")
-        sessionStorage.removeItem("otp_end_time")
-        sessionStorage.removeItem("resend_cooldown_end")
 
         // Retourner le message de succès
         return { success: true, message: "Email vérifié avec succès" }
