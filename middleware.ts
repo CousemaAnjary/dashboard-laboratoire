@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { getSessionCookie } from "better-auth/cookies"
 
 // 🔹 Définition des routes protégées et publiques
-const protectedRoutes = ["/dashboard"]
+const protectedRoutes = ["/dashboard","/profile"]
 const publicRoutes = ["/login", "/register", "/"]
 const restrictedForAuthenticated = ["/email-verified", "/reset-password"];
 
