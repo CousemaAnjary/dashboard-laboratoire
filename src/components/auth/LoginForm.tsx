@@ -23,7 +23,7 @@ export default function LoginForm() {
     const [isPending, startTransition] = useTransition()
     const [showPassword, setShowPassword] = useState(false)
 
-    const form = useForm({
+    const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
             email: "",

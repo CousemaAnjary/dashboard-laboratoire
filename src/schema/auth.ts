@@ -33,3 +33,7 @@ export const RegisterSchema = z.object({
     message: "Les mots de passe ne correspondent pas",
     path: ["confirmPassword"]
 })
+
+export const VerifyEmailSchema = z.object({
+    pin: z.string().min(6, "Le code de vérification doit contenir au moins 6 caractères"),
+})
