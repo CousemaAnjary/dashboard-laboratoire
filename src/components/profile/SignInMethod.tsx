@@ -94,7 +94,7 @@ export default function SignInMethod() {
                                 <div className="flex items-center gap-2">
                                     <Button
                                         size={"sm"}
-                                        className="bg-blue-900 hover:bg-blue-950 rounded-sm font-inter shadow-sm "
+                                        className="bg-blue-900 hover:bg-blue-950 rounded-sm font-spaceGrotesk shadow-sm "
                                     >
                                         Modifier l'email
                                     </Button>
@@ -102,7 +102,7 @@ export default function SignInMethod() {
                                         onClick={() => setIsEditing(false)}
                                         size={"sm"}
                                         variant={"ghost"}
-                                        className="rounded-sm font-inter shadow"
+                                        className="rounded-sm font-spaceGrotesk shadow"
                                     >
                                         Annuler
                                     </Button>
@@ -120,8 +120,8 @@ export default function SignInMethod() {
                             <Button
                                 onClick={() => setIsEditing(true)}
                                 size={"sm"}
-                                variant={"outline"}
-                                className="rounded-sm font-inter shadow-sm "
+                                variant={"ghost"}
+                                className="rounded-sm font-spaceGrotesk shadow "
                             >
                                 Modifier l'email
                             </Button>
@@ -185,8 +185,8 @@ export default function SignInMethod() {
                             <Button
                                 onClick={() => setIsEditing(true)}
                                 size={"sm"}
-                                variant={"outline"}
-                                className="rounded-sm font-spaceGrotesk shadow-sm "
+                                variant={"ghost"}
+                                className="rounded-sm font-spaceGrotesk shadow"
                             >
                                 Réinitialiser le mot de passe
                             </Button>
