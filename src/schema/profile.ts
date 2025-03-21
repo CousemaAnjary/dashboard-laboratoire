@@ -18,7 +18,6 @@ export const updatePasswordSchema = z.object({
 
 
 export const updateUserSchema = z.object({
-    firstname: z.string().min(2, "Le prénom doit contenir au moins 2 caractères"),
-    lastname: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
+    name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
     image: z.string().url("L'URL de l'image est invalide"),
 })

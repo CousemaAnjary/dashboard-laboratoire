@@ -1,22 +1,25 @@
 "use client"
 import { z } from "zod"
 import { Input } from "../ui/input"
+import { Button } from "../ui/button"
 import { useForm } from "react-hook-form"
+import { authClient } from "@/src/lib/auth-client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { updateUserSchema } from "@/src/schema/profile"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
-import { Button } from "../ui/button"
 
 
 export default function ProfileDetails() {
     /**
      * ! STATE (état, données) de l'application
      */
+    const { data: session } = authClient.useSession()
+    
+
     const form = useForm<z.infer<typeof updateUserSchema>>({
         resolver: zodResolver(updateUserSchema),
         defaultValues: {
-            firstname: "",
-            lastname: "",
+            name: "",
             image: undefined
         },
     })
@@ -42,44 +45,27 @@ export default function ProfileDetails() {
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(handleUpdateUser)}>
                             <div className="grid gap-4">
-                                <div className="grid grid-cols-2 gap-6">
-                                    <div className="grid gap-2">
-                                        <FormField
-                                            control={form.control}
-                                            name="lastname"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel className="text-sm font-medium font-inter">Nom</FormLabel>
-                                                    <FormControl>
-                                                        <Input {...field}
-                                                            placeholder="ABDILLAH"
-                                                            className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
-                                                        />
-                                                    </FormControl>
-                                                    <FormMessage className="font-inter" />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-                                    <div className="grid gap-2">
-                                        <FormField
-                                            control={form.control}
-                                            name="firstname"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel className="text-sm font-medium font-inter">Prénom</FormLabel>
-                                                    <FormControl>
-                                                        <Input {...field}
-                                                            placeholder="Cousema Anjary"
-                                                            className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
-                                                        />
-                                                    </FormControl>
-                                                    <FormMessage className="font-inter" />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
+                                <div className="grid gap-2">
+                                    <FormField
+                                        control={form.control}
+                                        name="name"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-sm font-medium font-inter">Nom complet</FormLabel>
+                                                <FormControl>
+                                                    <Input 
+                                                        {...field}
+                                                        type="text"
+                                                        placeholder={session?.user?.name }
+                                                        className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
+                                                    />
+                                                </FormControl>
+                                                <FormMessage className="font-inter" />
+                                            </FormItem>
+                                        )}
+                                    />
                                 </div>
+
                                 <div className="grid gap-2 ">
                                     <FormField
                                         control={form.control}
