@@ -1,7 +1,7 @@
 "use server"
 import { z } from "zod"
-import { updateUserSchema } from "@/src/schema/profile"
 import { auth } from "@/src/lib/auth"
+import { updateUserSchema } from "@/src/schema/profile"
 
 
 export async function updateUser(data: z.infer<typeof updateUserSchema>) {
@@ -11,10 +11,10 @@ export async function updateUser(data: z.infer<typeof updateUserSchema>) {
         if (!validatedData.success) return { success: false, error: "Données invalides" }
 
         // Extraire les données validées
-        const { name, image } = validatedData.data
+        const { name } = validatedData.data
 
         // Mise à jour de l'utilisateur
-        await auth.api.updateUser({ body: { name, image } })
+        await auth.api.updateUser({ body: { name } })
 
         // Retourner le message de succès
         return { success: true, message: "Utilisateur mis à jour avec succès" }

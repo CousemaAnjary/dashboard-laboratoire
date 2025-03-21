@@ -4,17 +4,19 @@ import { useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { useForm } from "react-hook-form"
+import { authClient } from "@/src/lib/auth-client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { updateEmailSchema } from "@/src/schema/profile"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
+
 
 
 export default function UpdateEmail() {
     /**
      * ! STATE (état, données) de l'application
      */
-    const [isEditing, setIsEditing] = useState(false);
-    const [email, setEmail] = useState("support@keenthemes.com")
+    const [isEditing, setIsEditing] = useState(false)
+    const { data: session } = authClient.useSession()
 
     const form = useForm<z.infer<typeof updateEmailSchema>>({
         resolver: zodResolver(updateEmailSchema),
@@ -50,9 +52,9 @@ export default function UpdateEmail() {
                                                 <FormLabel className="text-sm font-medium font-inter">Nouvelle adresse e-mail</FormLabel>
                                                 <FormControl>
                                                     <Input
+                                                        {...field}
                                                         type="email"
-                                                        placeholder={email} // ✅ Affichage en placeholder
-                                                        onChange={field.onChange}
+                                                        placeholder={session?.user.email} // ✅ Affichage en placeholder
                                                         className="bg-gray-50 focus:bg-white focus:outline-none border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
                                                     />
                                                 </FormControl>
@@ -104,7 +106,7 @@ export default function UpdateEmail() {
                 <>
                     <p className="text-sm font-medium font-inter">Adresse e-mail</p>
                     <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground font-spaceGrotesk font-medium">{email}</span>
+                        <span className="text-sm text-muted-foreground font-spaceGrotesk font-medium">{session?.user.email}</span>
                         <Button
                             onClick={() => setIsEditing(true)}
                             size="sm"

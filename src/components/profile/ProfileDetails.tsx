@@ -9,6 +9,7 @@ import { authClient } from "@/src/lib/auth-client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { updateUserSchema } from "@/src/schema/profile"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
+import { updateUser } from "@/app/server/profile/profile.actions"
 
 
 export default function ProfileDetails() {
@@ -30,8 +31,17 @@ export default function ProfileDetails() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
-    const handleUpdateUser = (data: z.infer<typeof updateUserSchema>) => {
-
+    const handleUpdateUser = async (data: z.infer<typeof updateUserSchema>) => {
+        // Affichage du loader pendant le chargement
+        setLoading(true)
+        try {
+            const response = await updateUser(data)
+            if (!response.success) return console.log(response.error)
+        }
+        catch (error) {
+            console.error("Erreur de mise à jour de l'utilisateur :", error)
+        }
+        finally { setLoading(false) }
     }
 
     /**

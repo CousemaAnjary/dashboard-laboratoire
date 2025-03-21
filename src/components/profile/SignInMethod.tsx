@@ -3,13 +3,14 @@ import { Button } from "../ui/button"
 import UpdateEmail from "./UpdateEmail"
 import { FcLock } from "react-icons/fc"
 import UpdatePassword from "./UpdatePassword"
+import { authClient } from "@/src/lib/auth-client"
 
 
 export default function SignInMethod() {
     /**
      * ! STATE (état, données) de l'application
      */
-
+ 
 
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
