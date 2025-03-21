@@ -42,7 +42,9 @@ export const auth = betterAuth({
                 }
 
                 await sendEmail({ to: email, subject, otp })
-            }
+            },
+            otpLength: 6,
+            expiresIn: 600 // 10 minutes
 
         }),
         nextCookies(),
