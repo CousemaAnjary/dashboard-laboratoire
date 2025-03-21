@@ -85,7 +85,7 @@ export default function Profile() {
                 </div>
             </div>
 
-            <Tabs defaultValue="account" className=" mt-6 rounded-lg p-1 py-1.5">
+            <Tabs defaultValue="Settings" className=" mt-6 rounded-lg p-1 py-1.5">
                 <TabsList className=" flex justify-start space-x-4 p-2 py-6 bg-slate-100 w-full ">
                     <TabsTrigger className="p-2 font-inter rounded-sm" value="account">Vue générale</TabsTrigger>
                     <TabsTrigger className="p-2 font-inter rounded-sm" value="Settings">Paramètres</TabsTrigger>

@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState } from "react"
+import { Button } from "../ui/button"
 
 export default function SignInMethod() {
     const [email, setEmail] = useState("support@keenthemes.com");
@@ -31,7 +32,7 @@ export default function SignInMethod() {
     return (
         <div >
             {/* 🔑 Titre */}
-            <h2 className="text-lg font-semibold text-gray-800">Méthode de connexion</h2>
+            <h2 className=" font-spaceGrotesk font-semibold text-gray-800">Méthode de connexion</h2>
 
             {/* 📧 Modification d'email */}
             <div className="mt-4 border-b pb-4">
@@ -70,15 +71,15 @@ export default function SignInMethod() {
                     </>
                 ) : (
                     <>
-                        <p className="text-sm font-medium text-gray-600">Adresse e-mail</p>
-                        <div className="mt-1 flex items-center justify-between">
-                            <span className="text-sm text-gray-800">{email}</span>
-                            <button
+                        <p className="text-sm font-medium  font-inter">Adresse e-mail</p>
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground font-spaceGrotesk font-medium">{email}</span>
+                            <Button
                                 onClick={() => setIsEditing(true)}
                                 className="rounded-md bg-gray-100 px-3 py-1 text-sm text-gray-600 hover:bg-gray-200"
                             >
                                 Modifier l'email
-                            </button>
+                            </Button>
                         </div>
                     </>
                 )}
