@@ -1,6 +1,6 @@
 "use client"
 import { z } from "zod"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Loader } from "lucide-react"
@@ -31,6 +31,15 @@ export default function ProfileDetails() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
+    useEffect(() => {
+        if (session?.user?.name) {
+            form.reset({
+                name: session.user.name,
+                image: undefined
+            })
+        }
+    }, [session?.user?.name])
+
     const handleUpdateUser = async (data: z.infer<typeof updateUserSchema>) => {
         // Affichage du loader pendant le chargement
         setLoading(true)
