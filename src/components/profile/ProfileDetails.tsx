@@ -35,8 +35,13 @@ export default function ProfileDetails() {
         // Affichage du loader pendant le chargement
         setLoading(true)
         try {
-            const response = await updateUser(data)
-            if (!response.success) return console.log(response.error)
+            await authClient.updateUser({ name: data.name })
+
+            // Vider le formulaire après la soumission
+            form.reset({
+                name: "",
+                image: undefined
+            })
         }
         catch (error) {
             console.error("Erreur de mise à jour de l'utilisateur :", error)
@@ -106,6 +111,8 @@ export default function ProfileDetails() {
                                     size={"sm"}
                                     variant="secondary"
                                     className="rounded-sm font-inter shadow"
+                                    onClick={() => form.reset()}
+
                                 >
                                     Effacer
                                 </Button>

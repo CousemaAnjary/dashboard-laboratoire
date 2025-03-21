@@ -16,11 +16,18 @@ export const auth = betterAuth({
         usePlural: true
     }),
 
+    session: {
+        cookieCache: {
+            enabled: true,
+            maxAge: 5 * 60, // 5 minutes
+        }
+    },
+
     emailAndPassword: {
         enabled: true,
         requireEmailVerification: true,
     },
-    
+
     emailVerification: {
         sendOnSignUp: true,
         autoSignInAfterVerification: true,

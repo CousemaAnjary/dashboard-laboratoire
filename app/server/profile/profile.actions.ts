@@ -1,9 +1,8 @@
 "use server"
 import { z } from "zod"
 import { auth } from "@/src/lib/auth"
-import { updateUserSchema } from "@/src/schema/profile"
-import { getServerSession } from "../session.actions"
 import { headers } from "next/headers"
+import { updateUserSchema } from "@/src/schema/profile"
 
 
 export async function updateUser(data: z.infer<typeof updateUserSchema>) {
@@ -18,7 +17,7 @@ export async function updateUser(data: z.infer<typeof updateUserSchema>) {
         // Mise à jour de l'utilisateur
         await auth.api.updateUser({
             body: { name },
-            headers: await headers()
+            
         })
 
         // Retourner le message de succès
