@@ -4,6 +4,7 @@ import { authClient } from "@/src/lib/auth-client"
 import profileCover from "@/public/images/profile-cover-2.jpg"
 import SignInMethod from "@/src/components/profile/SignInMethod"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs"
+import ProfileDetails from "@/src/components/profile/ProfileDetails"
 
 
 export default function Profile() {
@@ -98,8 +99,9 @@ export default function Profile() {
                         <p>Informations générales</p>
                     </div>
                 </TabsContent>
-                <TabsContent value="Settings" className="bg-white mt-4 shadow-sm  rounded-md">
+                <TabsContent value="Settings">
                     <SignInMethod />
+                    <ProfileDetails  />
                 </TabsContent>
             </Tabs>
         </>

@@ -19,7 +19,7 @@ export default function SignInMethod() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <div>
+        <div className="bg-white mt-4 shadow-sm  rounded-md">
             <div className="p-4 border-b">
                 <h2 className="font-spaceGrotesk font-semibold text-gray-800">Méthode de connexion</h2>
             </div>
@@ -28,7 +28,7 @@ export default function SignInMethod() {
                 <UpdatePassword />
 
                 {/* 🔐 Sécurité : 2FA */}
-                <div className="mt-2 flex justify-between items-center gap-3 rounded-md  border-blue-300 border-dotted border-2 bg-blue-50 p-4">
+                <div className="mt-2 flex justify-between items-center gap-3 rounded-md  border-blue-300 border-dotted border bg-blue-50 p-4">
                     <div className="flex items-start gap-2">
                         <span className="text-blue-500 text-2xl">🔒</span>
                         <div>
