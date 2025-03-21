@@ -1,6 +1,7 @@
 "use client"
 import { z } from "zod"
 import { Loader } from "lucide-react"
+import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import { useEffect, useState } from "react"
 import { Button } from "@/src/components/ui/button"
@@ -19,6 +20,7 @@ export default function EmailVerified() {
     /**
      * ! STATE (état, données) de l'application
      */
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [resendCooldown, setResendCooldown] = useState(0)
     const [otpExpiration, setOtpExpiration] = useState(OTP_EXPIRATION_TIME)
@@ -59,6 +61,10 @@ export default function EmailVerified() {
         setLoading(true)
         try {
             const response = await verifyEmail(data)
+            if (!response.success) return console.log(response.error)
+
+            // Rediriger l'utilisateur vers la page de connexion
+            router.push("/dashboard")
         }
         catch (error) {
             console.error("Erreur de vérification du code OTP :", error)
