@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form"
 import { authClient } from "@/src/lib/auth-client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { updateUserSchema } from "@/src/schema/profile"
-import { updateUser } from "@/app/server/profile/profile.actions"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 
 
@@ -23,7 +22,7 @@ export default function ProfileDetails() {
     const form = useForm<z.infer<typeof updateUserSchema>>({
         resolver: zodResolver(updateUserSchema),
         defaultValues: {
-            name: "",
+            name: session?.user.name || "",
             image: undefined
         },
     })
@@ -51,6 +50,10 @@ export default function ProfileDetails() {
         finally { setLoading(false) }
     }
 
+    if (!session) {
+        return <div>Chargement...</div>
+    }
+
     /**
      * ! AFFICHAGE (render) de l'application
      */
@@ -76,8 +79,8 @@ export default function ProfileDetails() {
                                                     <Input
                                                         {...field}
                                                         type="text"
-                                                        placeholder={session?.user?.name}
-                                                        className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
+                                                        placeholder="Votre nom complet"
+                                                        className=" focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950 bg-gray-50"
                                                     />
                                                 </FormControl>
                                                 <FormMessage className="font-inter" />
