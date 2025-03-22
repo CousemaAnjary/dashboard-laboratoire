@@ -21,7 +21,7 @@ export default function SignInMethod() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <div className="bg-white mt-4 shadow-sm  rounded-md">
+        <div className="bg-white mt-4 shadow-sm border rounded-md">
             <div className="p-4 border-b">
                 <h2 className="font-spaceGrotesk font-semibold text-gray-800">Méthode de connexion</h2>
             </div>

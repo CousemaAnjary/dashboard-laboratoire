@@ -56,7 +56,7 @@ export default function Profile() {
                                     className="h-full w-full object-cover"
                                 />
                             ) : (
-                                <div className="flex h-full w-full items-center justify-center bg-slate-50 text-3xl font-semibold text-gray-700"> CN</div>
+                                <div className="flex h-full w-full items-center justify-center bg-slate-50 text-3xl font-semibold text-gray-700">JD</div>
                             )}
                         </div>
                     </div>
