@@ -1,6 +1,6 @@
 "use client"
 import { z } from "zod"
-import {useState } from "react"
+import { useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Loader } from "lucide-react"
@@ -90,15 +90,14 @@ export default function ProfileDetails() {
                                     <FormField
                                         control={form.control}
                                         name="image"
-                                        render={({ field }) => (
+                                        render={() => (
                                             <FormItem>
                                                 <FormLabel className="text-sm font-medium font-inter">Image (optional)</FormLabel>
                                                 <FormControl>
                                                     <Input
                                                         type="file"
                                                         accept="image/*"
-                                                        className="bg-gray-50  focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
-                                                        onChange={(e) => { field.onChange(e.target.files ? e.target.files[0] : null) }}
+                                                        className="bg-gray-50 focus:bg-white border-none shadow placeholder:text-slate-500 font-inter rounded-sm dark:bg-zinc-950"
                                                     />
                                                 </FormControl>
                                                 <FormMessage className="font-inter" />
