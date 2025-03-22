@@ -36,8 +36,8 @@ export default function Profile() {
                     <Image
                         src={profileCover} // Remplace avec ton image
                         alt="Cover"
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        style={{ objectFit: "cover" }}
 
                     />
                 </div>
@@ -101,7 +101,7 @@ export default function Profile() {
                 </TabsContent>
                 <TabsContent value="Settings">
                     <SignInMethod />
-                    <ProfileDetails  />
+                    <ProfileDetails />
                 </TabsContent>
             </Tabs>
         </>
