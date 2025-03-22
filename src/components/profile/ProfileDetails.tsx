@@ -1,6 +1,6 @@
 "use client"
 import { z } from "zod"
-import { useEffect, useState } from "react"
+import {useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Loader } from "lucide-react"

@@ -4,7 +4,7 @@ import { getSessionCookie } from "better-auth/cookies"
 // 🔹 Définition des routes protégées et publiques
 const protectedRoutes = ["/dashboard","/profile"]
 const publicRoutes = ["/login", "/register", "/"]
-const restrictedForAuthenticated = ["/email-verified", "/reset-password"];
+const restrictedForAuthenticated = ["/email-verified", "/reset-password"]
 
 
 export async function middleware(request: NextRequest) {
